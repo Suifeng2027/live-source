@@ -48,7 +48,7 @@ CGTN纪录,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225645/inde
 吉林双阳综合,http://stream11.jlntv.cn/shuangyang/playlist.m3u8
 吉林图们TV1,http://stream6.jlntv.cn/tm/playlist.m3u8
 吉林大安新闻综合,http://stream6.jlntv.cn/da/playlist.m3u8
-吉林德惠综合,http://stream11.jlntv.cn/dehuitv/playlist.m3u8
+吉林德惠综合,http://stream11.jlntv.cn/dehuitv/sd/live.m3u8
 吉林扶余综合,http://stream6.jlntv.cn/fy/playlist.m3u8
 吉林柳河综合,http://stream5.jlntv.cn/lh/playlist.m3u8
 吉林桦甸综合,http://stream10.jlntv.cn/huadian/playlist.m3u8
@@ -70,6 +70,7 @@ CGTN纪录,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225645/inde
 四川夹江新闻综合,http://tvfile.jjrm.org.cn/nmip-media/channellive/channel106282/playlist.m3u8
 四川广安公共频道,http://live1.gatv.com.cn:85/live/GGPD.m3u8
 四川旺苍新闻综合,http://channel.wcrmt.cn:80/nmip-media/channellive/channel105268/playlist.m3u8
+四川松潘新闻综合,http://live.spccmc.com:90/live/spxwzh.m3u8
 四川泸州新闻综合,http://m3u8.channel.luzhoubs.com/nmip-media/channellive/channel106011/playlist.m3u8
 四川泸州科教频道,http://m3u8.channel.luzhoubs.com/nmip-media/channellive/channel103074/playlist.m3u8
 四川科教,http://182.150.115.21:8030/pcgacg/pcgacg_0.m3u8
@@ -122,19 +123,6 @@ CGTN纪录,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225645/inde
 江苏镇江新闻综合,http://zjtv-wshls.homecdn.com/live/2aa50.m3u8
 江苏镇江社会民生,http://zjtv-wshls.homecdn.com/live/2aa16.m3u8
 江苏靖江新闻综合,http://visit.jjbctv.com:1935/live/xwzhmb/playlist.m3u8
-江西丰城新闻综合,https://play-sh13.quklive.com/live/1753663315049013.m3u8?auth_key=2078289279-0a5d6fc5967248dfafee7fa442d5503a-0-3b9dc4c709fc2f111eb141a77bd1170c
-江西乐安综合频道,http://play-a2.quklive.com/live/1752744744088073.m3u8
-江西信丰综合频道,http://play-a2.quklive.com/live/1761874123034214.m3u8
-江西公共农业,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225578/index.m3u8?fmt=ts2hls
-江西南康综合频道,http://play-a2.quklive.com/live/1758525653004384.m3u8
-江西宜春公共,http://liveds-yc.newsyc.com/two/sd/live.m3u8
-江西宜春综合,http://liveds-yc.newsyc.com/wetef/sd/live.m3u8
-江西德兴新闻综合,http://218.64.164.152:5021/live_hls/2/playlist.m3u8
-江西教育,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226197/index.m3u8?fmt=ts2hls
-江西玉山新闻综合,http://play-a2.quklive.com/live/1744269699236128.m3u8
-江西瑞金综合频道,http://play-a2.quklive.com/live/1760408109205119.m3u8
-江西章贡综合,http://218.95.14.41:8000/hls/stream0.m3u8
-江西都市,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225584/index.m3u8?fmt=ts2hls
 河南 新野综合,http://tvpull.dxhmt.cn:9081/tv/11329-1.m3u8
 河南上街电视台,http://tvpull.dxhmt.cn:9081/tv/10106-1.m3u8
 河南延津综合,http://tvpull.dxhmt.cn:9081/tv/10726-1.m3u8
@@ -159,7 +147,7 @@ CGTN纪录,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225645/inde
 浙江余杭未来E,http://l.cztvcloud.com/channels/lantian/SXyuhang3/720p.m3u8?zzhed
 浙江余杭未来频道,http://l.cztvcloud.com/channels/lantian/SXyuhang3/720p.m3u8
 浙江兰溪新闻综合频道,http://l.cztvcloud.com/channels/lantian/SXlanxi1/720p.m3u8
-浙江卫视,http://ali-m-l.cztv.com:80/channels/lantian/channel001/1080p.m3u8
+浙江卫视,http://ali-m-l.cztv.com/channels/lantian/channel001/1080p.m3u8
 浙江卫视4K,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226404/2/index.m3u8?fmt=ts2hls
 浙江宁波余姚生活,http://l.cztvcloud.com/channels/lantian/SXyuyao2/720p.m3u8
 浙江宁波象山综合,http://l.cztvcloud.com/channels/lantian/SXxiangshan1/720p.m3u8
@@ -217,3 +205,18 @@ CGTN纪录,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225645/inde
 黑龙江哈尔滨影视,http://stream.hrbtv.net/yspd/sd/live.m3u8?zheild
 黑龙江哈尔滨新闻综合,http://stream.hrbtv.net/xwzh/sd/live.m3u8?zheild
 黑龙江哈尔滨生活,http://stream.hrbtv.net/shpd/sd/live.m3u8?zheild
+
+江西台,#genre#
+江西丰城新闻综合,https://play-sh13.quklive.com/live/1753663315049013.m3u8?auth_key=2078289279-0a5d6fc5967248dfafee7fa442d5503a-0-3b9dc4c709fc2f111eb141a77bd1170c
+江西乐安综合频道,http://play-a2.quklive.com/live/1752744744088073.m3u8
+江西信丰综合频道,http://play-a2.quklive.com/live/1761874123034214.m3u8
+江西公共农业,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225578/index.m3u8?fmt=ts2hls
+江西南康综合频道,http://play-a2.quklive.com/live/1758525653004384.m3u8
+江西宜春公共,http://liveds-yc.newsyc.com/two/sd/live.m3u8
+江西宜春综合,http://liveds-yc.newsyc.com/wetef/sd/live.m3u8
+江西德兴新闻综合,http://218.64.164.152:5021/live_hls/2/playlist.m3u8
+江西教育,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226197/index.m3u8?fmt=ts2hls
+江西玉山新闻综合,http://play-a2.quklive.com/live/1744269699236128.m3u8
+江西瑞金综合频道,http://play-a2.quklive.com/live/1760408109205119.m3u8
+江西章贡综合,http://218.95.14.41:8000/hls/stream0.m3u8
+江西都市,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225584/index.m3u8?fmt=ts2hls
