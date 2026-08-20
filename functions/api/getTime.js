@@ -6,7 +6,7 @@
 
 export async function onRequest(context) {
   const requestTime = new Date().toISOString();
-  const currentTime = Date.now();
+  const currentTime = Math.floor(Date.now() / 1000);  // 秒时间戳（10位）
   
   console.log('[GET_TIME] 请求进入');
   console.log('[GET_TIME] 请求时间:', requestTime);
