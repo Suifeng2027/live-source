@@ -59,9 +59,9 @@ export async function onRequest(context) {
     }
 
     const response = {
-      code: 20010,
-      msg: '未登录',
-      data: ""
+      code: 0,
+      msg: '成功',
+      data: "cFBi0rP+QgublcYKkyietaE0OH/zg30XvLKa1rFzEjYhAh+96JLt/eWSpc2Fv4beGfhUoaUfkQOZJqIrkY1nn3LIwd54IXSbV/KeDSDNc2lhJQUZHCd67+k1knLn8/MaNuTLd5gZ2/meA+zD9X4SHg=="
     };
 
     console.log('[LOGIN] response:', JSON.stringify(response));
