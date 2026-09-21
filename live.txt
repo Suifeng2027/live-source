@@ -1193,14 +1193,7 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 重庆新闻,http://38.75.136.137:98/gslb/dsdqpub/cqxw.m3u8?auth=testpub
 重庆汽摩,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225506/index.m3u8?fmt=ts2hls
 
-陕西省频道,#genre#
-陕西农林卫视,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226204/index.m3u8
-陕西卫视,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225729/index.m3u8
 
-青海省频道,#genre#
-青海卫视,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225727/index.m3u8
-青海卫视,http://cdn6.bkpcp.top/tl/tuiliu.php?id=qhws
-青海卫视,http://t.061899.xyz/tl/tl.php?id=qhws
 
 黑龙江省频道,#genre#
 七台河新闻综合,http://live.qthnews.org.cn:1935/live/live1/800k/tzwj_video.m3u8
@@ -1210,15 +1203,11 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 东宁综合,https://rmplive.hljtv.com/live/dongning.m3u8
 五大连池综合,https://masterpull.hljtv.com/live/6ic4FFgF.m3u8
 五大连池综合,https://rmplive.hljtv.com/live/wudalianchi.m3u8
-五常综合,https://rmplive.hljtv.com/live/wuchang.m3u8
-五常综合,https://masterpull.hljtv.com/live/R9bOklLT.m3u8
-伊春新闻综合,https://masterpull.hljtv.com/live/vQtnS3vX.m3u8
 伊春新闻综合,https://rmplive.hljtv.com/live/yichun.m3u8
 佳木斯新闻综合,https://masterpull.hljtv.com/live/l9wQtsVs.m3u8
 依兰综合,https://rmplive.hljtv.com/live/yilan.m3u8
 依兰综合,https://masterpull.hljtv.com/live/4sTJDdbE.m3u8
-依安综合,https://rmplive.hljtv.com/live/yian.m3u8
-依安综合,https://masterpull.hljtv.com/live/4hhgo1mX.m3u8
+
 克东综合,https://masterpull.hljtv.com/live/PO1DiGiN.m3u8
 克东综合,https://rmplive.hljtv.com/live/kedong.m3u8
 勃利综合,https://rmplive.hljtv.com/live/boli.m3u8
@@ -1227,11 +1216,10 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 北安综合,https://masterpull.hljtv.com/live/EfoBDa06.m3u8
 友谊综合,https://masterpull.hljtv.com/live/LVpBWYXl.m3u8
 友谊综合,https://rmplive.hljtv.com/live/youyi.m3u8
-同江综合,https://masterpull.hljtv.com/live/oFc7fCUf.m3u8
+
 呼兰综合,https://rmplive.hljtv.com/live/hulan.m3u8
 呼兰综合,https://masterpull.hljtv.com/live/zja8TAIO.m3u8
-呼玛综合,https://rmplive.hljtv.com/live/huma.m3u8
-呼玛综合,https://masterpull.hljtv.com/live/yN3vDovm.m3u8
+
 哈尔滨影视,http://stream.hrbtv.net/yspd/sd/live.m3u8
 哈尔滨新闻综合,http://stream.hrbtv.net/xwzh/sd/live.m3u8
 哈尔滨新闻综合,https://rmplive.hljtv.com/live/haerbin.m3u8
@@ -1253,12 +1241,10 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 尚志综合,https://rmplive.hljtv.com/live/shangzhi.m3u8
 尚志综合,https://masterpull.hljtv.com/live/EQnKvoc9.m3u8
 巴彦综合,https://masterpull.hljtv.com/live/vAtZi96R.m3u8
-庆安综合,https://rmplive.hljtv.com/live/qingan.m3u8
-庆安综合,https://masterpull.hljtv.com/live/ayksl1Ur.m3u8
+
 延寿综合,https://masterpull.hljtv.com/live/XBqKssjB.m3u8
 延寿综合,https://rmplive.hljtv.com/live/yanshou.m3u8
-抚远综合,https://rmplive.hljtv.com/live/fuyuan.m3u8
-抚远综合,https://masterpull.hljtv.com/live/tVnkOTOG.m3u8
+
 拜泉综合,https://masterpull.hljtv.com/live/zHtOXXUz.m3u8
 拜泉综合,https://rmplive.hljtv.com/live/baiquan.m3u8
 方正综合,https://masterpull.hljtv.com/live/sSN2Uyb2.m3u8
@@ -1266,8 +1252,7 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 望奎综合,https://rmplive.hljtv.com/live/wangkui.m3u8
 望奎综合,https://masterpull.hljtv.com/live/d3loVdqX.m3u8
 林口综合,https://masterpull.hljtv.com/live/pqheD07F.m3u8
-林甸综合,https://rmplive.hljtv.com/live/lindian.m3u8
-林甸综合,https://masterpull.hljtv.com/live/23PN6NW9.m3u8
+
 桦川综合,https://masterpull.hljtv.com/live/NYQcW0fS.m3u8
 汤原综合,https://masterpull.hljtv.com/live/lt2CmppY.m3u8
 海伦综合,https://rmplive.hljtv.com/live/hailun.m3u8
@@ -1276,15 +1261,14 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 海林综合,https://rmplive.hljtv.com/live/hailin.m3u8
 漠河综合,https://masterpull.hljtv.com/live/rlVvbTZN.m3u8
 漠河综合,https://rmplive.hljtv.com/live/mohe.m3u8
-牡丹江新闻综合,https://masterpull.hljtv.com/live/newLqQS9Lcp.m3u8
+
 甘南县综合,https://masterpull.hljtv.com/live/YbFyF4Jb.m3u8
 甘南县综合,https://rmplive.hljtv.com/live/gannan.m3u8
-穆棱综合,https://rmplive.hljtv.com/live/muleng.m3u8
-穆棱综合,https://masterpull.hljtv.com/live/5c9Mi3FV.m3u8
+
 绥化新闻综合,https://liveplaysr.dbw.cn/lsdream/amzPoBP/1000/live.m3u8
 绥化新闻综合,https://masterpull.hljtv.com/live/v4o2g1hs.m3u8
 绥化新闻综合,https://rmplive.hljtv.com/live/suihua.m3u8
-绥棱综合,https://masterpull.hljtv.com/live/p7WSvrJJ.m3u8
+
 绥芬河综合,https://rmplive.hljtv.com/live/suifenhe.m3u8
 绥芬河综合,https://masterpull.hljtv.com/live/pXxFNIbi.m3u8
 肇东综合,https://masterpull.hljtv.com/live/G84ZsUTP.m3u8
@@ -1310,8 +1294,4 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 黑龙江哈尔滨影视,http://stream.hrbtv.net/yspd/sd/live.m3u8?zheild
 黑龙江哈尔滨新闻综合,http://stream.hrbtv.net/xwzh/sd/live.m3u8?zheild
 黑龙江哈尔滨生活,http://stream.hrbtv.net/shpd/sd/live.m3u8?zheild
-黑龙江少儿,https://ls.qingting.fm/live/4972/64k.m3u8
-黑龙江新闻,https://ls.qingting.fm/live/4974/64k.m3u8
-齐齐哈尔新闻综合,https://rmplive.hljtv.com/live/qiqihaer.m3u8
-龙江综合,https://rmplive.hljtv.com/live/longjiang.m3u8
-龙江综合,https://masterpull.hljtv.com/live/vRSdDMSR.m3u8
+
