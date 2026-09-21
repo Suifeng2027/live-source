@@ -236,6 +236,8 @@ CCTV-17,http://38.75.136.137:98/gslb/dsdqbv/cctv17hd.m3u8?auth=test20251009
 江西卫视,http://107.150.60.122/live/jxwshd.m3u8
 江西卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=jxwshd
 江西卫视,http://198.204.228.26/live/jxwshd.m3u8
+北京冬奥纪实,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225676/index.m3u8
+北京卡酷少儿,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225677/index.m3u8
 河北卫视,http://204.12.221.218:8181/3m1080p/hews.m3u8
 河北卫视,http://173.208.212.130:8181/720p/hews.m3u8
 河北卫视,http://192.151.150.154/live/hewshd.m3u8
@@ -398,8 +400,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 三国演义,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352944
 三国演义（94版）,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602081
 中国功夫,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352941
-九阴真经,http://tv.zimtv.cn/tv/player/api/huya.php?id=23824164
-乡村爱情,http://tv.zimtv.cn/tv/player/api/huya.php?id=30080255
 云南虫谷,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352898
 你是我的荣耀,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352920
 倚天屠龙记,http://tv.zimtv.cn/tv/player/api/huya.php?id=23734246
@@ -416,19 +416,19 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 古装剧集,http://tv.zimtv.cn/tv/player/api/huya.php?id=11601979
 国产科幻(试播),http://tv.zimtv.cn/tv/player/api/huya.php?id=11602077
 地下交通站,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342433
-士兵突击,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342430
+
 外科医生,http://tv.zimtv.cn/tv/player/api/huya.php?id=29982672
-大唐双龙传,http://tv.zimtv.cn/tv/player/api/huya.php?id=23728674
+
 大宋提刑官,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355856
 大时代,http://tv.zimtv.cn/tv/player/api/huya.php?id=23865161
 天仙配,http://tv.zimtv.cn/tv/player/api/huya.php?id=29982663
 天龙八部,http://tv.zimtv.cn/tv/player/api/huya.php?id=23903123
-天龙八部97版,http://tv.zimtv.cn/tv/player/api/huya.php?id=23903123
+
 天龙八部-胡军,http://tv.zimtv.cn/tv/player/api/huya.php?id=20985816
-天龙八部（胡军）,http://tv.zimtv.cn/tv/player/api/huya.php?id=20985816
+
 如懿传,http://tv.zimtv.cn/tv/player/api/huya.php?id=29465880
 妙手仁心,http://tv.zimtv.cn/tv/player/api/huya.php?id=23829543
-孙悟空,http://tv.zimtv.cn/tv/player/api/huya.php?id=23735126
+
 孙红雷,http://tv.zimtv.cn/tv/player/api/huya.php?id=11601970
 宝莲灯,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059563
 宝莲灯前传,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059557
@@ -436,7 +436,7 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 家有儿女,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352872
 寻秦记,http://tv.zimtv.cn/tv/player/api/huya.php?id=23864973
 将夜,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352885
-小李飞刀（焦恩俊版）,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342397
+
 庆余年,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352960
 康熙大帝,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352940
 康熙微服私访记,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342418
@@ -447,7 +447,7 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 张卫健版鹿鼎记,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355806
 御赐小仵作,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352948
 怒晴湘西,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602075
-情满四合院,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342426
+
 我的团长我的团,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352910
 我的野蛮婆婆,http://tv.zimtv.cn/tv/player/api/huya.php?id=23863796
 扫黄先锋,http://tv.zimtv.cn/tv/player/api/huya.php?id=23903196
@@ -458,11 +458,11 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 新三国,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352944
 新三国演义,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352944
 新水浒传,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342384
-新白娘子传奇,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355768
-新雪豹,http://tv.zimtv.cn/tv/player/api/huya.php?id=29580970
+
+
 昆仑神宫,http://tv.zimtv.cn/tv/player/api/huya.php?id=11601957
 星汉灿烂·月生沧海,http://tv.zimtv.cn/tv/player/api/huya.php?id=11336591
-有翡(试播),http://tv.zimtv.cn/tv/player/api/huya.php?id=29580970
+
 李卫当官,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355788
 杨光的快乐生活,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602085
 杨紫,http://tv.zimtv.cn/tv/player/api/huya.php?id=11336593
@@ -476,10 +476,9 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 水浒传,http://173.208.234.146/live/vlshz.m3u8
 水浒传,http://live.ottiptv.cc/huya/26355860
 水浒传,https://live.ottiptv.cc/yy/1353873252
-法证先锋,http://tv.zimtv.cn/tv/player/api/huya.php?id=23863804
-法证先锋3,http://tv.zimtv.cn/tv/player/api/huya.php?id=23863804
+
 洗冤录,http://tv.zimtv.cn/tv/player/api/huya.php?id=23903130
-活佛济公,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342400
+
 炊事班的故事3,http://tv.zimtv.cn/tv/player/api/huya.php?id=19524135
 爱情公寓,http://tv.zimtv.cn/tv/player/api/huya.php?id=11336726
 父母爱情,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602071
@@ -488,11 +487,10 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 盛世大唐,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355763
 硬汉007,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059585
 神医喜来乐,http://tv.zimtv.cn/tv/player/api/huya.php?id=11601978
-神探狄仁杰,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352958
-神探狄仁杰①,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352958
+
 神探狄仁杰③,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342425
 神雕侠侣,http://tv.zimtv.cn/tv/player/api/huya.php?id=23865171
-秦始皇,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059634
+
 笑傲江湖,http://tv.zimtv.cn/tv/player/api/huya.php?id=23865142
 笑傲江湖,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355790
 笑看风云,http://tv.zimtv.cn/tv/player/api/huya.php?id=23865058
@@ -501,40 +499,18 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 繁花,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059580
 纪晓岚,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342396
 经典宫斗剧,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355845
-经典港剧,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352965
+
 绝代双骄,http://tv.zimtv.cn/tv/player/api/huya.php?id=29465867
 老三国,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602081
-老三国演义,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602081
+
 胡斐(试播),http://tv.zimtv.cn/tv/player/api/huya.php?id=26355765
 芈月传,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352975
 花千骨,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355839
 葛二蛋,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602072
 西游记,http://173.208.234.146/live/vlxyj.m3u8
-西游记-张卫健,http://tv.zimtv.cn/tv/player/api/huya.php?id=23728660
-西游记-陈浩民,http://tv.zimtv.cn/tv/player/api/huya.php?id=23735126
-西游记（TVB版）,http://tv.zimtv.cn/tv/player/api/huya.php?id=23728660
-许三多,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342430
-贺岁喜剧,http://tv.zimtv.cn/tv/player/api/huya.php?id=11601986
-超级交通站,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342433
-轩辕剑-胡歌,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059596
-轩辕剑之天之痕,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059596
-邻里一家亲,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342426
-都挺好,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059594
-金枝欲孽,http://tv.zimtv.cn/tv/player/api/huya.php?id=23865036
-鉴证实录,http://tv.zimtv.cn/tv/player/api/huya.php?id=23903183
-铁梨花,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352912
-铁道游击队,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352936
-铁齿铜牙纪晓岚,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342396
-镖行天下,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352969
-长相思,http://tv.zimtv.cn/tv/player/api/huya.php?id=11336593
-问心,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352890
+
 闯关东,http://173.208.234.146/live/lbchuangguandong.m3u8
-陀枪师姐,http://tv.zimtv.cn/tv/player/api/huya.php?id=23860039
-陆贞传奇,http://tv.zimtv.cn/tv/player/api/huya.php?id=29982670
-陈情令,http://tv.zimtv.cn/tv/player/api/huya.php?id=29465862
-陈翔六点半,http://tv.zimtv.cn/tv/player/api/huya.php?id=11274154
-雀刀门传奇,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352963
-雍正王朝,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342439
+
 雪中悍刀行,http://tv.zimtv.cn/tv/player/api/huya.php?id=11336592
 风云雄霸天下,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059612
 鬼吹灯,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352871
@@ -543,8 +519,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 鸡毛飞上天,http://tv.zimtv.cn/tv/player/api/huya.php?id=29982664
 鹊刀门,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352963
 鹿鼎记-梁朝伟,http://tv.zimtv.cn/tv/player/api/huya.php?id=23734183
-鹿鼎记-陈小春,http://tv.zimtv.cn/tv/player/api/huya.php?id=23865080
-鹿鼎记小春版,http://tv.zimtv.cn/tv/player/api/huya.php?id=23865080
 龙岭迷窟,http://tv.zimtv.cn/tv/player/api/huya.php?id=29465863
 
 上海市频道,#genre#
@@ -593,10 +567,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 锡林郭勒盟一套,http://play1-qk.nmtv.cn/live/1735546994821050.m3u8
 阿拉善新闻综合,http://play1-qk.nmtv.cn/live/1735547046115053.m3u8
 
-北京市频道,#genre#
-北京冬奥纪实,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225676/index.m3u8
-北京卡酷少儿,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225677/index.m3u8
-顺义综合,http://livebjsy.chinamcache.com/live/zb01.m3u8
 
 吉林省频道,#genre#
 东丰综合,http://stream5.jlntv.cn/df/playlist.m3u8
@@ -1141,13 +1111,7 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 龙游新闻综合,http://l.cztvcloud.com/channels/lantian/SXlongyou1/720p.m3u8?zzhed
 龙游生活娱乐,http://l.cztvcloud.com/channels/lantian/SXlongyou2/720p.m3u8?zzhed
 
-湖北省频道,#genre#
-武汉一台新闻综合,https://ls.qingting.fm/live/20198/64k.m3u8
-荆门新闻综合,http://stream.jmtv.com.cn/xwzh/sd/live.m3u8
-荆门新闻综合,https://stream.jmtv.com.cn/xwzh/playlist.m3u8?_upt=3e28e7271664278691
-
 湖南省频道,#genre#
-湖南卫视,http://go.bkpcp.top/mg/hunws
 湖南卫视,http://t.061899.xyz/tl/tl.php?id=hunws
 湖南卫视,http://cdn6.bkpcp.top/tl/tuiliu.php?id=hunws
 湖南卫视,http://j.s.bkpcp.top/jj/hunws
@@ -1188,10 +1152,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 福州生活,http://live.zohi.tv:80/video/s10001-fztv-3/index.m3u8
 福建新闻,http://satellitepull.cnr.cn/live/wx32fjxwgb/playlist.m3u8
 福建经济,http://satellitepull.cnr.cn/live/wx32fjdnjjgb/playlist.m3u8
-
-重庆市频道,#genre#
-重庆新闻,http://38.75.136.137:98/gslb/dsdqpub/cqxw.m3u8?auth=testpub
-重庆汽摩,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225506/index.m3u8?fmt=ts2hls
 
 
 
