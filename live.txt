@@ -146,10 +146,7 @@ CCTV-17,http://t.061899.xyz/tl/tl.php?id=cctv17
 CCTV-17,http://74.91.26.218:82/live/cctv17hd.m3u8
 CCTV-17,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=cctv17hd
 CCTV-17,http://38.75.136.137:98/gslb/dsdqbv/cctv17hd.m3u8?auth=test20251009
-CETV-1,http://198.204.228.26/live/cetv1hd.m3u8
-CETV-1,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=cetv1hd
-CGTN西班牙语,http://go.bkpcp.top/mg/cgtne
-CGTN阿拉伯语,http://go.bkpcp.top/mg/cgtna
+
 
 江西省频道,#genre#
 江西丰城新闻综合,https://play-sh13.quklive.com/live/1753663315049013.m3u8?auth_key=2078289279-0a5d6fc5967248dfafee7fa442d5503a-0-3b9dc4c709fc2f111eb141a77bd1170c
@@ -301,30 +298,6 @@ CGTN阿拉伯语,http://go.bkpcp.top/mg/cgtna
 黑龙江卫视,http://198.204.228.26/live/hljwshd.m3u8
 黑龙江卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=hljwshd
 
-💰央视付费频道,#genre#
-兵器科技,http://38.75.136.137:98/gslb/dsdqpub/gfjs.m3u8?auth=testpub
-兵器科技,http://173.208.212.130:8181/720p/gfjs.m3u8
-兵器科技,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=gfjs
-央视台球,http://38.75.136.137:98/gslb/dsdqpub/ystq.m3u8?auth=testpub
-央视台球,http://107.150.60.122/live/ystq.m3u8
-央视台球,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=ystq
-女性时尚,http://38.75.136.137:98/gslb/dsdqpub/nxss.m3u8?auth=testpub
-女性时尚,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=nxss
-怀旧剧场,http://107.150.60.122/live/hjjc.m3u8
-怀旧剧场,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=hjjc
-怀旧剧场,http://38.75.136.137:98/gslb/dsdqpub/hjjc.m3u8?auth=testpub
-文化精品,http://38.75.136.137:98/gslb/dsdqpub/ysjp.m3u8?auth=testpub
-第一剧场,http://38.75.136.137:98/gslb/dsdqpub/dyjc.m3u8?auth=testpub
-第一剧场,http://107.150.60.122/live/dyjc.m3u8
-第一剧场,http://173.208.212.130:8181/720p/dyjc.m3u8
-风云剧场,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=fyjc
-风云剧场,http://38.75.136.137:98/gslb/dsdqpub/fyjc.m3u8?auth=testpub
-风云剧场,http://173.208.212.130:8181/720p/fyjc.m3u8
-风云足球,http://207.56.13.146:81/cdnlive/fyzq.m3u8
-风云足球,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=fyzq
-风云足球,http://38.75.136.137:98/gslb/dsdqpub/fyzq.m3u8?auth=testpub
-风云音乐,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=fyyy
-风云音乐,http://38.75.136.137:98/gslb/dsdqpub/fyyy.m3u8?auth=testpub
 
 🎵音乐频道,#genre#
 任齐贤-心太软,http://vodcdn.video.taobao.com/oss/ali-video/1675208d8b5f0f0d8ce09236f4068dfe/video.m3u8
@@ -420,7 +393,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 
 
 🏛经典剧场,#genre#
-86版西游记,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355861
 一代枭雄,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342398
 万万没想到,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355850
 三国演义,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352944
@@ -577,7 +549,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 
 上海市频道,#genre#
 上海新闻,http://8.138.7.223/tv/5gtv.php?id=36
-上海第一财经,https://satellitepull.cnr.cn/live/wx32dycjgb/playlist.m3u8
 东方卫视,http://bp-resource-dfl.bestv.cn/148/3/video.m3u8
 东方卫视4K,http://bp-resource-dfl.bestv.cn/148/3/video.m3u8
 东方财经,http://8.138.7.223/tv/5gtv.php?id=227
@@ -592,9 +563,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 金山电视台,http://pili-live-hls.wdit.com.cn/wditlive/8818dfe5f4df45ba9a3f32964d172fb2b6d3.m3u8
 金色学堂,http://8.138.7.223/tv/5gtv.php?id=40
 
-云南省频道,#genre#
-云南卫视,http://t.061899.xyz/tl/tl.php?id=ynws
-易门综合,https://zb-live.ynurl.com/yimen/3b75a2f9-7941-46b7-992d-a9796fbca5fe.m3u8
 
 内蒙古自治区频道,#genre#
 乌兰察布新闻综合,http://play1-qk.nmtv.cn/live/1735546836103043.m3u8
@@ -628,7 +596,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 北京市频道,#genre#
 北京冬奥纪实,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225676/index.m3u8
 北京卡酷少儿,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225677/index.m3u8
-北京新闻,https://satellitepull.cnr.cn/live/wxbjxwgb/playlist.m3u8
 顺义综合,http://livebjsy.chinamcache.com/live/zb01.m3u8
 
 吉林省频道,#genre#
@@ -851,23 +818,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 河源综合,https://tmpstream.hyrtv.cn/xwzh/sd/live.m3u8
 韶关新闻综合,https://www.sgmsw.cn/videos/tv/201805/1308/SB05RIYZOU8JR418AUQOF62CAJQ08D0E/hls/live.m3u8
 
-广播之声,#genre#
-CRI中文广播,http://sk.cri.cn/hyhq.m3u8
-CRI南海之声,http://sk.cri.cn/nhzs.m3u8
-CRI海峡飞虹,http://sk.cri.cn/hxfh.m3u8
-CRI资讯广播 FM90.5,http://sk.cri.cn/905.m3u8
-中华之声,http://satellitepull.cnr.cn/live/wxzhzs/playlist.m3u8
-中国之声,http://satellitepull.cnr.cn/live/wxzgzs/playlist.m3u8
-乡村之声,http://satellitepull.cnr.cn/live/wxxczs/playlist.m3u8
-文艺之声,http://satellitepull.cnr.cn/live/wxwyzs/playlist.m3u8
-民族之声,http://satellitepull.cnr.cn/live/wxmzzs/playlist.m3u8
-海峡之声,http://satellitepull.cnr.cn/live/wxhxzs/playlist.m3u8
-深圳之声,http://satellitepull.cnr.cn/live/wxxgzs/playlist.m3u8
-神州之声,http://satellitepull.cnr.cn/live/wxszzs/playlist.m3u8
-经济之声,http://satellitepull.cnr.cn/live/wxjjzs/playlist.m3u8
-老年之声,http://satellitepull.cnr.cn/live/wxlnzs/playlist.m3u8
-都市之声,http://satellitepull.cnr.cn/live/wxdszs/playlist.m3u8
-音乐之声,http://satellitepull.cnr.cn/live/wxyyzs/playlist.m3u8
 
 广西壮族自治区频道,#genre#
 南宁影视娱乐,http://hls.nntv.cn/nnlive/YSYL_244.m3u8
@@ -1244,7 +1194,6 @@ CRI资讯广播 FM90.5,http://sk.cri.cn/905.m3u8
 重庆汽摩,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225506/index.m3u8?fmt=ts2hls
 
 陕西省频道,#genre#
-陕西公共,http://ls.qingting.fm/live/1222.m3u8
 陕西农林卫视,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226204/index.m3u8
 陕西卫视,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225729/index.m3u8
 
