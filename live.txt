@@ -258,10 +258,8 @@ CCTV-17,http://38.75.136.137:98/gslb/dsdqbv/cctv17hd.m3u8?auth=test20251009
 湖南卫视,https://txmov2.a.kwimgs.com/bs3/video-hls/5199687338554291078_hlsb.m3u8
 湖南卫视,http://107.150.60.122/live/hnwshd.m3u8
 湖南卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=hnwshd
-甘肃卫视,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225724/index.m3u8
 甘肃卫视,http://38.75.136.137:98/gslb/dsdqpub/gswshd.m3u8?auth=testpub
 甘肃卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=gswshd
-甘肃卫视,http://t.061899.xyz/tl/tl.php?id=gsws
 西藏卫视,http://198.204.228.26/live/xzws.m3u8
 西藏卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=xzws
 西藏卫视,http://107.150.60.122/live/xzws.m3u8
@@ -292,9 +290,7 @@ CCTV-17,http://38.75.136.137:98/gslb/dsdqbv/cctv17hd.m3u8?auth=test20251009
 黑龙江卫视,http://204.12.221.218:8181/3m1080p/hljws.m3u8
 黑龙江卫视,http://198.204.228.26/live/hljwshd.m3u8
 黑龙江卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=hljwshd
-厦门卫视,http://198.204.228.26/live/xmws.m3u8
-厦门卫视,http://107.150.60.122/live/xmws.m3u8
-厦门卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=xmws
+
 
 🎬电影频道,#genre#
 CHC动作电影,http://38.75.136.137:98/gslb/dsdqpub/chcdz.m3u8?auth=testpub
@@ -327,18 +323,13 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 古装剧集,http://tv.zimtv.cn/tv/player/api/huya.php?id=11601979
 国产科幻(大秦帝国),http://tv.zimtv.cn/tv/player/api/huya.php?id=11602077
 地下交通站,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342433
-
 在暴雪时分,http://tv.zimtv.cn/tv/player/api/huya.php?id=29982672
-
 大宋提刑官,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355856
 大时代,http://tv.zimtv.cn/tv/player/api/huya.php?id=23865161
 天仙配,http://tv.zimtv.cn/tv/player/api/huya.php?id=29982663
-
 天龙八部-胡军,http://tv.zimtv.cn/tv/player/api/huya.php?id=20985816
-
 最强大脑,http://tv.zimtv.cn/tv/player/api/huya.php?id=29465880
 叶问外传：张天志,http://tv.zimtv.cn/tv/player/api/huya.php?id=23829543
-
 征服,http://tv.zimtv.cn/tv/player/api/huya.php?id=11601970
 宝莲灯,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059563
 宝莲灯前传,http://tv.zimtv.cn/tv/player/api/huya.php?id=21059557
@@ -346,7 +337,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 家有儿女,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352872
 敢死队 4：最终章,http://tv.zimtv.cn/tv/player/api/huya.php?id=23864973
 将夜,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352885
-
 庆余年,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352960
 康熙大帝,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352940
 康熙微服私访记,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342418
@@ -357,7 +347,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 张卫健版鹿鼎记,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355806
 麻辣变形计,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352948
 怒晴湘西,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602075
-
 特种兵之霹雳火,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352910
 我的野蛮婆婆,http://tv.zimtv.cn/tv/player/api/huya.php?id=23863796
 英雄联盟：双城之战,http://tv.zimtv.cn/tv/player/api/huya.php?id=23903196
@@ -368,11 +357,8 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 新三国,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352944
 新三国演义,http://tv.zimtv.cn/tv/player/api/huya.php?id=11352944
 新水浒传,http://tv.zimtv.cn/tv/player/api/huya.php?id=11342384
-
-
 昆仑神宫,http://tv.zimtv.cn/tv/player/api/huya.php?id=11601957
 星汉灿烂·月生沧海,http://tv.zimtv.cn/tv/player/api/huya.php?id=11336591
-
 李卫当官,http://tv.zimtv.cn/tv/player/api/huya.php?id=26355788
 杨光的快乐生活,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602085
 浪客剑心 最终章 追忆篇,http://tv.zimtv.cn/tv/player/api/huya.php?id=11336593
@@ -386,9 +372,7 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 水浒传,http://173.208.234.146/live/vlshz.m3u8
 水浒传,http://live.ottiptv.cc/huya/26355860
 水浒传,https://live.ottiptv.cc/yy/1353873252
-
 洗冤录,http://tv.zimtv.cn/tv/player/api/huya.php?id=23903130
-
 炊事班的故事3,http://tv.zimtv.cn/tv/player/api/huya.php?id=19524135
 爱情公寓,http://tv.zimtv.cn/tv/player/api/huya.php?id=11336726
 父母爱情,http://tv.zimtv.cn/tv/player/api/huya.php?id=11602071
@@ -516,19 +500,15 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 第一财经,http://8.138.7.223/tv/5gtv.php?id=17
 第一财经,http://satellitepull.cnr.cn/live/wx32dycjgb/playlist.m3u8
 都市剧场,https://satellitepull.cnr.cn/live/wxcqxwgb/playlist.m3u8
-
 金色学堂,http://8.138.7.223/tv/5gtv.php?id=40
 
 
 内蒙古自治区频道,#genre#
-
 内蒙古乌海新闻综合,http://play1-qk.nmtv.cn/live/1735546358166026.m3u8
 内蒙古兴安盟新闻综合,http://play1-qk.nmtv.cn/live/1735546886977046.m3u8
 内蒙古包头新闻综合,http://play1-qk.nmtv.cn/live/1735546150395017.m3u8
 内蒙古呼伦贝尔新闻综合,http://play1-qk.nmtv.cn/live/1735546791130040.m3u8
 内蒙古呼和浩特新闻综合,http://play1-qk.nmtv.cn/live/1735545967595013.m3u8
-
-
 内蒙古赤峰新闻综合,http://play1-qk.nmtv.cn/live/1735546697341033.m3u8
 内蒙古通辽新闻综合,http://play1-qk.nmtv.cn/live/1735546745882037.m3u8
 内蒙古鄂尔多斯新闻综合,http://play1-qk.nmtv.cn/live/1735546299241021.m3u8
@@ -1115,7 +1095,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 佳木斯新闻综合,https://masterpull.hljtv.com/live/l9wQtsVs.m3u8
 依兰综合,https://rmplive.hljtv.com/live/yilan.m3u8
 依兰综合,https://masterpull.hljtv.com/live/4sTJDdbE.m3u8
-
 克东综合,https://masterpull.hljtv.com/live/PO1DiGiN.m3u8
 克东综合,https://rmplive.hljtv.com/live/kedong.m3u8
 勃利综合,https://rmplive.hljtv.com/live/boli.m3u8
@@ -1124,10 +1103,8 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 北安综合,https://masterpull.hljtv.com/live/EfoBDa06.m3u8
 友谊综合,https://masterpull.hljtv.com/live/LVpBWYXl.m3u8
 友谊综合,https://rmplive.hljtv.com/live/youyi.m3u8
-
 呼兰综合,https://rmplive.hljtv.com/live/hulan.m3u8
 呼兰综合,https://masterpull.hljtv.com/live/zja8TAIO.m3u8
-
 哈尔滨影视,http://stream.hrbtv.net/yspd/sd/live.m3u8
 哈尔滨新闻综合,http://stream.hrbtv.net/xwzh/sd/live.m3u8
 哈尔滨新闻综合,https://rmplive.hljtv.com/live/haerbin.m3u8
@@ -1149,10 +1126,8 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 尚志综合,https://rmplive.hljtv.com/live/shangzhi.m3u8
 尚志综合,https://masterpull.hljtv.com/live/EQnKvoc9.m3u8
 巴彦综合,https://masterpull.hljtv.com/live/vAtZi96R.m3u8
-
 延寿综合,https://masterpull.hljtv.com/live/XBqKssjB.m3u8
 延寿综合,https://rmplive.hljtv.com/live/yanshou.m3u8
-
 拜泉综合,https://masterpull.hljtv.com/live/zHtOXXUz.m3u8
 拜泉综合,https://rmplive.hljtv.com/live/baiquan.m3u8
 方正综合,https://masterpull.hljtv.com/live/sSN2Uyb2.m3u8
@@ -1160,7 +1135,6 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 望奎综合,https://rmplive.hljtv.com/live/wangkui.m3u8
 望奎综合,https://masterpull.hljtv.com/live/d3loVdqX.m3u8
 林口综合,https://masterpull.hljtv.com/live/pqheD07F.m3u8
-
 桦川综合,https://masterpull.hljtv.com/live/NYQcW0fS.m3u8
 汤原综合,https://masterpull.hljtv.com/live/lt2CmppY.m3u8
 海伦综合,https://rmplive.hljtv.com/live/hailun.m3u8
@@ -1169,14 +1143,11 @@ CHC家庭影院,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=chcjt
 海林综合,https://rmplive.hljtv.com/live/hailin.m3u8
 漠河综合,https://masterpull.hljtv.com/live/rlVvbTZN.m3u8
 漠河综合,https://rmplive.hljtv.com/live/mohe.m3u8
-
 甘南县综合,https://masterpull.hljtv.com/live/YbFyF4Jb.m3u8
 甘南县综合,https://rmplive.hljtv.com/live/gannan.m3u8
-
 绥化新闻综合,https://liveplaysr.dbw.cn/lsdream/amzPoBP/1000/live.m3u8
 绥化新闻综合,https://masterpull.hljtv.com/live/v4o2g1hs.m3u8
 绥化新闻综合,https://rmplive.hljtv.com/live/suihua.m3u8
-
 绥芬河综合,https://rmplive.hljtv.com/live/suifenhe.m3u8
 绥芬河综合,https://masterpull.hljtv.com/live/pXxFNIbi.m3u8
 肇东综合,https://masterpull.hljtv.com/live/G84ZsUTP.m3u8
