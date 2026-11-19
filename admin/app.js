@@ -249,6 +249,9 @@
     }
   };
 
+  // 会员列表请求序号：只有最新一次请求的响应允许写入界面状态
+  let membersRequestSeq = 0;
+
   // ========== Toast 提示 ==========
   function toast(msg, type) {
     const el = document.createElement('div');
@@ -299,8 +302,8 @@
       case 'dashboard': renderDashboard(); break;
       case 'members':
         renderMembers();
-        // 首次进入会员管理视图才加载；失败后不自动重试，等待用户显式点击刷新
-        if (!state.memberPage.loaded && !state.memberPage.loading && !state.memberPage.error) loadMembers();
+        // 首次进入会员管理视图才加载；请求失败后离开再进入会再次尝试加载，但不代表会自动无限重试
+        if (!state.memberPage.loaded && !state.memberPage.loading) loadMembers();
         break;
       case 'expiring': renderExpiring(); break;
       case 'disabled': renderDisabled(); break;
@@ -419,17 +422,33 @@
   // 拉取会员列表（后端分页）。本阶段只服务「会员管理」列表，不影响模拟数据
   async function loadMembers() {
     const p = state.memberPage;
-    if (p.loading) return; // 防止并发重复请求
+    // 每次调用都取新序号；旧请求返回时序号已过期，只负责退出
+    const requestId = ++membersRequestSeq;
 
-    p.loading = true;
+    p.loading = true; // 仅最新请求会在结束时清除
     p.error = null;
     renderMembers(); // 首次显示「加载中…」，翻页时保留旧表格并提示加载中
 
-    const query = '?page=' + encodeURIComponent(state.page)
+    let query = '?page=' + encodeURIComponent(state.page)
       + '&pageSize=' + encodeURIComponent(state.pageSize);
+
+    // 可选筛选参数：前端 device 映射为后端 deviceId；trim 后为空则不拼入 URL
+    const filterParams = {
+      phone: state.filters.phone,
+      deviceId: state.filters.device,
+      status: state.filters.status,
+      expire: state.filters.expire
+    };
+    Object.keys(filterParams).forEach((key) => {
+      const raw = filterParams[key];
+      const value = raw == null ? '' : String(raw).trim();
+      if (value !== '') query += '&' + key + '=' + encodeURIComponent(value);
+    });
 
     try {
       const res = await api('GET', '/members' + query);
+      if (requestId !== membersRequestSeq) return; // 旧请求：丢弃响应，不写任何共享状态
+
       const data = res && res.data ? res.data : null;
       if (!data || !Array.isArray(data.list)) {
         throw apiError('invalid_json', 200, 200, '返回数据格式异常');
@@ -445,20 +464,24 @@
       p.error = null;
       state.page = p.page;
 
-      // 页码越界（例如数据减少）：回写到最后有效页并重取一次
-      if (p.list.length === 0 && p.total > 0 && p.page > p.totalPages) {
+      // 页码越界（例如数据减少或空库）：只要超出有效页就回到有效页重取
+      if (p.list.length === 0 && p.page > p.totalPages && p.page > 1) {
+        if (requestId !== membersRequestSeq) return; // 递归前确认仍是当前请求
         state.page = p.totalPages;
         return loadMembers();
       }
 
       renderMembers();
     } catch (err) {
+      if (requestId !== membersRequestSeq) return; // 旧请求失败：不覆盖新请求的 loading 与错误状态
       p.loading = false;
       p.loaded = false;
       p.list = []; // 失败时清空，绝不让旧数据或模拟数据冒充真实数据
       p.total = 0;
       p.totalPages = 1;
       p.error = (err && (err.msg || err.message)) ? String(err.msg || err.message) : '未知错误';
+      // 失败后回到上一次成功确认的页码，避免重试落在失败页
+      state.page = p.page;
       renderMembers();
     }
   }
@@ -537,15 +560,17 @@
   }
 
   function renderPageButtons(totalPages) {
-    let html = `<button class="page-btn" data-page="${state.page - 1}" ${state.page <= 1 ? 'disabled' : ''}>上一页</button>`;
+    // 分页控件以服务端确认的页码 mp.page 为准，保证与当前表格数据一致
+    const mp = state.memberPage;
+    let html = `<button class="page-btn" data-page="${mp.page - 1}" ${mp.page <= 1 ? 'disabled' : ''}>上一页</button>`;
     for (let i = 1; i <= totalPages; i++) {
-      if (totalPages > 7 && Math.abs(i - state.page) > 2 && i !== 1 && i !== totalPages) {
+      if (totalPages > 7 && Math.abs(i - mp.page) > 2 && i !== 1 && i !== totalPages) {
         if (i === 2 || i === totalPages - 1) html += `<span class="page-btn" style="border:none;">…</span>`;
         continue;
       }
-      html += `<button class="page-btn ${i === state.page ? 'active' : ''}" data-page="${i}">${i}</button>`;
+      html += `<button class="page-btn ${i === mp.page ? 'active' : ''}" data-page="${i}">${i}</button>`;
     }
-    html += `<button class="page-btn" data-page="${state.page + 1}" ${state.page >= totalPages ? 'disabled' : ''}>下一页</button>`;
+    html += `<button class="page-btn" data-page="${mp.page + 1}" ${mp.page >= totalPages ? 'disabled' : ''}>下一页</button>`;
     $('pageButtons').innerHTML = html;
     $('pageButtons').querySelectorAll('.page-btn[data-page]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -993,6 +1018,62 @@
     $('sidebarMask').classList.remove('show');
   }
 
+  // ========== 搜索防抖 ==========
+  // 手机号与设备号共用一个防抖定时器；searchPending 标记「输入已变更但尚未发起请求」
+  const SEARCH_DEBOUNCE_MS = 300;
+  let searchTimer = null;
+  let searchPending = false;
+
+  // 放弃待执行的搜索（重置、下拉筛选时调用，避免旧条件再次发请求）
+  function cancelPendingSearch() {
+    if (searchTimer) {
+      clearTimeout(searchTimer);
+      searchTimer = null;
+    }
+    searchPending = false;
+  }
+
+  // 立即执行尚未发出的搜索：条件变化统一回到第 1 页
+  function flushPendingSearch() {
+    if (searchTimer) {
+      clearTimeout(searchTimer);
+      searchTimer = null;
+    }
+    if (!searchPending) return;
+    searchPending = false;
+    state.page = 1;
+    loadMembers();
+  }
+
+  function onSearchInput(e) {
+    const value = e.target.value;
+    if (e.target.id === 'searchPhone') state.filters.phone = value;
+    else state.filters.device = value;
+
+    if (searchTimer) {
+      clearTimeout(searchTimer);
+      searchTimer = null;
+    }
+    searchPending = true;
+
+    // 清空输入立即查询，其余等待停止输入 300ms
+    if (value === '') {
+      flushPendingSearch();
+      return;
+    }
+    searchTimer = setTimeout(() => {
+      searchTimer = null;
+      flushPendingSearch();
+    }, SEARCH_DEBOUNCE_MS);
+  }
+
+  function onSearchKeydown(e) {
+    // 兼容老浏览器的 keyCode，避免 Enter 触发表单提交或页面刷新
+    if (e.key !== 'Enter' && e.keyCode !== 13) return;
+    e.preventDefault();
+    flushPendingSearch();
+  }
+
   // ========== 事件绑定 ==========
   function bindEvents() {
     // 导航
@@ -1008,17 +1089,36 @@
     });
     // 新增会员
     $('btnAdd').addEventListener('click', openAddMember);
-    // 搜索筛选：S2 暂不接服务端参数（S3 接入）；此处不改变页码、不发请求、也不对当前页做本地过滤
-    $('searchPhone').addEventListener('input', (e) => { state.filters.phone = e.target.value; });
-    $('searchDevice').addEventListener('input', (e) => { state.filters.device = e.target.value; });
-    $('filterStatus').addEventListener('change', (e) => { state.filters.status = e.target.value; });
-    $('filterExpire').addEventListener('change', (e) => { state.filters.expire = e.target.value; });
+    // 搜索筛选：文本框输入防抖 300ms，Enter / 清空立即触发，失焦只补发尚未发出的搜索；下拉 change 立即触发
+    $('searchPhone').addEventListener('input', onSearchInput);
+    $('searchDevice').addEventListener('input', onSearchInput);
+    $('searchPhone').addEventListener('change', flushPendingSearch);
+    $('searchDevice').addEventListener('change', flushPendingSearch);
+    $('searchPhone').addEventListener('keydown', onSearchKeydown);
+    $('searchDevice').addEventListener('keydown', onSearchKeydown);
+    $('filterStatus').addEventListener('change', (e) => {
+      state.filters.status = e.target.value;
+      cancelPendingSearch();
+      state.page = 1;
+      loadMembers();
+    });
+    $('filterExpire').addEventListener('change', (e) => {
+      state.filters.expire = e.target.value;
+      cancelPendingSearch();
+      state.page = 1;
+      loadMembers();
+    });
+    // 按下重置时先放弃待执行的防抖，避免失焦触发的旧条件请求与重置请求相互覆盖
+    $('btnResetFilter').addEventListener('mousedown', cancelPendingSearch);
     $('btnResetFilter').addEventListener('click', () => {
+      cancelPendingSearch();
       state.filters = { phone: '', device: '', status: '', expire: '' };
       $('searchPhone').value = '';
       $('searchDevice').value = '';
       $('filterStatus').value = '';
       $('filterExpire').value = '';
+      state.page = 1;
+      loadMembers();
     });
     // 设置项开关
     document.querySelectorAll('.toggle').forEach(t => {
