@@ -13,10 +13,26 @@
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
   function fmtDate(sec) {
-    if (!sec || sec <= 0) return '—';
-    const d = new Date(sec * 1000);
-    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate())
-      + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    // 输入必须是 Unix 秒；0、负数、NaN、非数字、超出 Date 可表示范围一律返回占位符
+    const n = Number(sec);
+    if (!sec || !Number.isFinite(n) || n <= 0 || n > 8640000000000) return '—';
+    // 固定按北京时间（Asia/Shanghai）展示，不依赖访问者电脑的本地时区；只做一次秒 → 毫秒
+    const parts = new Intl.DateTimeFormat('zh-CN', {
+      timeZone: 'Asia/Shanghai',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23'
+    }).formatToParts(new Date(n * 1000));
+    const get = (type) => {
+      const part = parts.find(p => p.type === type);
+      return part ? part.value : '';
+    };
+    // 个别环境在 hour12:false 下会把午夜输出成 24 点，这里统一回落为 00
+    const hour = get('hour') === '24' ? '00' : get('hour');
+    return get('year') + '-' + get('month') + '-' + get('day') + ' ' + hour + ':' + get('minute');
   }
   function daysLeft(m) {
     if (!m.end_time || m.end_time <= 0) return -999;
