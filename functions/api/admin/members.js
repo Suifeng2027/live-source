@@ -145,7 +145,7 @@ async function handleGet(context) {
       .bind(...finalParams, pageSize, offset)
       .all();
 
-    const list = (rows || []).map(r => mapRow(r, serverTime));
+    const list = ((rows && rows.results) || []).map(r => mapRow(r, serverTime));
 
     return jsonResponse({
       code: 0,

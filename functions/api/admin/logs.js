@@ -49,7 +49,7 @@ async function handleGet(context) {
       .bind(...params, pageSize, offset)
       .all();
 
-    const list = (rows || []).map(r => ({
+    const list = ((rows && rows.results) || []).map(r => ({
       id: r.id,
       time: Number(r.created_at) || 0,
       admin: r.admin,
