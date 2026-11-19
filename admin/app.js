@@ -216,7 +216,18 @@
     makeMember({ days: 250 })
   ];
 
-  // ========== 操作日志（模拟） ==========
+  // 后端操作类型枚举 → 中文展示
+  const LOG_ACTION_LABELS = {
+    create: '新增会员',
+    renew: '续费',
+    disable: '停用会员',
+    restore: '恢复会员',
+    edit_phone: '修改手机号',
+    edit_device: '修改设备ID'
+  };
+  const LOG_RESULT_LABELS = { success: '成功', fail: '失败' };
+
+  // ========== 操作日志（模拟，仪表盘与本地操作仍使用） ==========
   let logs = [
     { time: NOW - 3600 * 2, admin: '管理员', type: '新增会员', target: members[0].phone, result: '成功' },
     { time: NOW - 3600 * 5, admin: '管理员', type: '续费', target: members[1].phone, result: '成功 +180天' },
@@ -246,11 +257,25 @@
       loading: false,
       error: null,
       loaded: false
+    },
+    // 操作日志列表的服务端分页缓存（真实数据），与模拟数组 logs 完全隔离
+    logPage: {
+      list: [],
+      total: 0,
+      page: 1,
+      pageSize: 10,
+      totalPages: 1,
+      loading: false,
+      error: null,
+      loaded: false
     }
   };
 
   // 会员列表请求序号：只有最新一次请求的响应允许写入界面状态
   let membersRequestSeq = 0;
+
+  // 操作日志请求序号：与会员列表相互独立，同样只允许最新请求写入界面
+  let logsRequestSeq = 0;
 
   // ========== Toast 提示 ==========
   function toast(msg, type) {
@@ -307,7 +332,11 @@
         break;
       case 'expiring': renderExpiring(); break;
       case 'disabled': renderDisabled(); break;
-      case 'logs': renderLogs(); break;
+      case 'logs':
+        renderLogs();
+        // 首次进入操作日志视图才加载；失败后离开再进入会再次尝试加载
+        if (!state.logPage.loaded && !state.logPage.loading) loadLogs();
+        break;
       case 'settings': break;
     }
   }
@@ -647,15 +676,78 @@
     });
   }
 
-  // ========== 操作日志 ==========
+  // ========== 操作日志（真实 API，固定第一页） ==========
+  async function loadLogs() {
+    const p = state.logPage;
+    // 每次调用都取新序号；旧请求返回时序号已过期，只负责退出
+    const requestId = ++logsRequestSeq;
+
+    p.loading = true;
+    p.error = null;
+    renderLogs(); // 首次显示「加载中…」
+
+    try {
+      const res = await api('GET', '/logs?page=1&pageSize=10');
+      if (requestId !== logsRequestSeq) return; // 旧请求：丢弃响应，不写任何共享状态
+
+      const data = res && res.data ? res.data : null;
+      if (!data || !Array.isArray(data.list)) {
+        throw apiError('invalid_json', 200, 200, '返回数据格式异常');
+      }
+
+      p.list = data.list;
+      p.total = Number(data.total) || 0;
+      p.totalPages = Number(data.totalPages) > 0 ? Number(data.totalPages) : 1;
+      p.page = Number(data.page) > 0 ? Number(data.page) : 1;
+      p.pageSize = Number(data.pageSize) > 0 ? Number(data.pageSize) : 10;
+      p.loaded = true;
+      p.loading = false;
+      p.error = null;
+      renderLogs();
+    } catch (err) {
+      if (requestId !== logsRequestSeq) return; // 旧请求失败：不覆盖新请求的 loading 与错误状态
+      p.loading = false;
+      p.loaded = false;
+      p.list = []; // 失败时清空，绝不回退到模拟 logs 数组
+      p.total = 0;
+      p.totalPages = 1;
+      p.error = (err && (err.msg || err.message)) ? String(err.msg || err.message) : '未知错误';
+      renderLogs();
+    }
+  }
+
   function renderLogs() {
-    $('logsTable').innerHTML = logs.map(l => `<tr>
+    const p = state.logPage;
+    const tbody = $('logsTable');
+
+    // 失败：只显示错误与重试入口，不回退模拟数据
+    if (p.error) {
+      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--danger);padding:40px 0;">加载失败：${escapeHtml(p.error)}<br><button class="page-btn" id="logReloadBtn" style="margin-top:12px;">重新加载</button></td></tr>`;
+      const reloadBtn = $('logReloadBtn');
+      if (reloadBtn) reloadBtn.addEventListener('click', () => loadLogs());
+      return;
+    }
+
+    // 首次加载：整表显示加载中
+    if (p.loading && !p.loaded) {
+      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:40px 0;">加载中…</td></tr>`;
+      return;
+    }
+
+    // 空数据
+    if (!p.list.length) {
+      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:40px 0;">暂无日志</td></tr>`;
+      return;
+    }
+
+    // 正常数据：time 为 Unix 秒；action 映射中文；result 只展示 success/fail，detail 不当作操作结果
+    tbody.innerHTML = p.list.map(l => `<tr>
       <td>${fmtDate(l.time)}</td>
       <td>${escapeHtml(l.admin)}</td>
-      <td><span class="badge active" style="min-width:70px;text-align:center;">${escapeHtml(l.type)}</span></td>
+      <td><span class="badge active" style="min-width:70px;text-align:center;">${escapeHtml(LOG_ACTION_LABELS[l.action] || l.action)}</span></td>
       <td>${escapeHtml(l.target)}</td>
-      <td>${escapeHtml(l.result)}</td>
-    </tr>`).join('') || `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:40px 0;">暂无日志</td></tr>`;
+      <td>${escapeHtml(LOG_RESULT_LABELS[l.result] || l.result)}</td>
+    </tr>`).join('');
   }
 
   // ========== 新增会员 ==========
