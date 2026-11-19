@@ -22,7 +22,17 @@
     if (!m.end_time || m.end_time <= 0) return -999;
     return Math.ceil((m.end_time - nowSec()) / DAY);
   }
+  const STATUS_LABELS = {
+    active: '有效',
+    expiring: '即将到期',
+    expired: '已过期',
+    disabled: '已停用',
+    not_started: '未开始'
+  };
+
+  // 优先使用服务端返回的 status（真实会员），缺失时才按模拟字段本地计算
   function statusOf(m) {
+    if (m && typeof m.status === 'string' && STATUS_LABELS[m.status]) return m.status;
     if (m.vip === 0) return 'disabled';
     const left = daysLeft(m);
     if (left < 0) return 'expired';
@@ -30,7 +40,7 @@
     return 'active';
   }
   function statusLabel(s) {
-    return { active: '有效', expiring: '即将到期', expired: '已过期', disabled: '已停用' }[s] || s;
+    return STATUS_LABELS[s] || s;
   }
   function maskDevice(id) {
     if (!id) return '—';
@@ -55,6 +65,108 @@
       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
   const PHONE_RE = /^1[3-9][0-9]{9}$/;
+
+  // ========== API 公共请求封装 ==========
+  // 仅提供统一的同源请求能力，本阶段不被任何业务代码调用。
+  // 认证由 Cloudflare Access 在边缘完成，前端不携带密钥，也不自行添加任何认证头。
+  const API_BASE = '/api/admin';
+  const API_TIMEOUT_MS = 10000;
+
+  // 统一错误对象：至少含 status / code / msg / type
+  function apiError(type, status, code, msg) {
+    const err = new Error(msg || type);
+    err.name = 'ApiError';
+    err.type = type;
+    err.status = status;
+    err.code = code;
+    err.msg = msg || '';
+    return err;
+  }
+
+  function isJsonResponse(response) {
+    const ct = response.headers.get('Content-Type') || '';
+    return ct.toLowerCase().indexOf('application/json') !== -1;
+  }
+
+  // 仅在 Content-Type 为 JSON 时才解析，避免把 HTML 当 JSON 处理
+  async function readJsonSafely(response) {
+    if (!isJsonResponse(response)) return null;
+    try {
+      return await response.json();
+    } catch (_e) {
+      return null;
+    }
+  }
+
+  async function api(method, path, body) {
+    const upper = String(method || 'GET').toUpperCase();
+    const url = API_BASE + (path || '');
+    const headers = { 'Accept': 'application/json' };
+    const options = { method: upper, headers: headers, redirect: 'manual' };
+
+    if (body !== undefined && body !== null) {
+      headers['Content-Type'] = 'application/json';
+      options.body = JSON.stringify(body);
+    }
+
+    // 10 秒超时（不改变默认同源凭据策略）
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    let timer = null;
+    let timeoutTask = null;
+    if (controller) {
+      options.signal = controller.signal;
+      timeoutTask = new Promise((_resolve, reject) => {
+        timer = setTimeout(() => {
+          controller.abort();
+          reject(apiError('timeout', 0, 0, '请求超时（' + API_TIMEOUT_MS + 'ms）'));
+        }, API_TIMEOUT_MS);
+      });
+    }
+
+    let response;
+    try {
+      response = controller
+        ? await Promise.race([fetch(url, options), timeoutTask])
+        : await fetch(url, options);
+    } catch (e) {
+      if (e && e.type === 'timeout') throw e;
+      // 跨域重定向被浏览器直接拒绝时也落到这里，此时无法确认具体原因
+      throw apiError('network_error', 0, 0, '网络异常或响应不可用');
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+
+    const status = typeof response.status === 'number' ? response.status : 0;
+
+    // redirect: "manual" 下重定向会得到 status=0 的不透明响应，不解析其内容
+    if (response.type === 'opaqueredirect' || status === 0 || (status >= 300 && status < 400)) {
+      throw apiError('access_redirect', status, status, '请求被重定向，可能需要重新完成 Access 登录');
+    }
+
+    if (!response.ok) {
+      const payload = await readJsonSafely(response);
+      const backendCode = payload && typeof payload.code === 'number' ? payload.code : status;
+      const backendMsg = payload && typeof payload.msg === 'string' ? payload.msg : '';
+      const type = status === 401 ? 'unauthorized'
+        : status === 403 ? 'forbidden'
+        : status === 503 ? 'auth_unavailable'
+        : 'http_error';
+      const fallback = type === 'unauthorized' ? '未通过身份验证'
+        : type === 'forbidden' ? '无权限访问'
+        : type === 'auth_unavailable' ? '认证服务暂不可用'
+        : 'HTTP ' + status;
+      throw apiError(type, status, backendCode, backendMsg || fallback);
+    }
+
+    if (!isJsonResponse(response)) {
+      throw apiError('invalid_content_type', status, status, '响应不是 application/json');
+    }
+    try {
+      return await response.json();
+    } catch (_e) {
+      throw apiError('invalid_json', status, status, '响应 JSON 解析失败');
+    }
+  }
 
   // ========== 模拟会员数据（全部虚构） ==========
   const NOW = nowSec();
@@ -123,7 +235,18 @@
     view: 'dashboard',
     page: 1,
     pageSize: 10,
-    filters: { phone: '', device: '', status: '', expire: '' }
+    filters: { phone: '', device: '', status: '', expire: '' },
+    // 会员列表的服务端分页缓存（真实数据），与模拟数组 members 完全隔离
+    memberPage: {
+      list: [],
+      total: 0,
+      page: 1,
+      pageSize: 10,
+      totalPages: 1,
+      loading: false,
+      error: null,
+      loaded: false
+    }
   };
 
   // ========== Toast 提示 ==========
@@ -174,7 +297,11 @@
   function render() {
     switch (state.view) {
       case 'dashboard': renderDashboard(); break;
-      case 'members': renderMembers(); break;
+      case 'members':
+        renderMembers();
+        // 首次进入会员管理视图才加载；失败后不自动重试，等待用户显式点击刷新
+        if (!state.memberPage.loaded && !state.memberPage.loading && !state.memberPage.error) loadMembers();
+        break;
       case 'expiring': renderExpiring(); break;
       case 'disabled': renderDisabled(); break;
       case 'logs': renderLogs(); break;
@@ -246,6 +373,7 @@
   }
 
   // ========== 会员筛选 ==========
+  // 说明：S2 起会员列表改用服务端分页数据，本函数不再参与列表渲染（S3 接入服务端筛选后统一处理）
   function getFilteredMembers() {
     const f = state.filters;
     return members.filter(m => {
@@ -265,7 +393,89 @@
   }
 
   // ========== 会员管理 ==========
-  function actionButtons(m) {
+  // 后端 DTO（camelCase）→ 本项目渲染所需字段（snake_case）
+  function normalizeMember(dto) {
+    const src = dto || {};
+    const num = (v) => {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
+    return {
+      id: num(src.id),
+      phone: src.phone == null ? '' : String(src.phone),
+      device_id: src.deviceId == null ? '' : String(src.deviceId),
+      vip: num(src.vip),
+      start_time: num(src.startTime),
+      end_time: num(src.endTime),
+      last_seen: num(src.lastSeen),
+      created_at: num(src.createdAt),
+      updated_at: num(src.updatedAt),
+      status: typeof src.status === 'string' ? src.status : '',
+      days_left: num(src.daysLeft),
+      remark: ''
+    };
+  }
+
+  // 拉取会员列表（后端分页）。本阶段只服务「会员管理」列表，不影响模拟数据
+  async function loadMembers() {
+    const p = state.memberPage;
+    if (p.loading) return; // 防止并发重复请求
+
+    p.loading = true;
+    p.error = null;
+    renderMembers(); // 首次显示「加载中…」，翻页时保留旧表格并提示加载中
+
+    const query = '?page=' + encodeURIComponent(state.page)
+      + '&pageSize=' + encodeURIComponent(state.pageSize);
+
+    try {
+      const res = await api('GET', '/members' + query);
+      const data = res && res.data ? res.data : null;
+      if (!data || !Array.isArray(data.list)) {
+        throw apiError('invalid_json', 200, 200, '返回数据格式异常');
+      }
+
+      p.list = data.list.map(normalizeMember);
+      p.total = Number(data.total) || 0;
+      p.totalPages = Number(data.totalPages) > 0 ? Number(data.totalPages) : 1;
+      p.page = Number(data.page) > 0 ? Number(data.page) : state.page;
+      p.pageSize = Number(data.pageSize) > 0 ? Number(data.pageSize) : state.pageSize;
+      p.loaded = true;
+      p.loading = false;
+      p.error = null;
+      state.page = p.page;
+
+      // 页码越界（例如数据减少）：回写到最后有效页并重取一次
+      if (p.list.length === 0 && p.total > 0 && p.page > p.totalPages) {
+        state.page = p.totalPages;
+        return loadMembers();
+      }
+
+      renderMembers();
+    } catch (err) {
+      p.loading = false;
+      p.loaded = false;
+      p.list = []; // 失败时清空，绝不让旧数据或模拟数据冒充真实数据
+      p.total = 0;
+      p.totalPages = 1;
+      p.error = (err && (err.msg || err.message)) ? String(err.msg || err.message) : '未知错误';
+      renderMembers();
+    }
+  }
+
+  function actionButtons(m, locked) {
+    // 真实会员行：这些操作尚未接入 API，明确禁用，避免误调模拟逻辑或真实 ID 与模拟 ID 碰撞
+    if (locked) {
+      const dis = 'disabled title="该操作将在后续阶段接入真实接口" style="opacity:.45;cursor:not-allowed;"';
+      return `
+      <div class="row-actions">
+        <button class="action-btn" ${dis}>详情</button>
+        <button class="action-btn" ${dis}>续费</button>
+        <button class="action-btn" ${dis}>改手机号</button>
+        <button class="action-btn" ${dis}>改设备ID</button>
+        <button class="action-btn danger" ${dis}>停用</button>
+      </div>`;
+    }
     const s = statusOf(m);
     const disableBtn = s !== 'disabled'
       ? `<button class="action-btn danger" data-act="disable" data-id="${m.id}">停用</button>`
@@ -280,33 +490,49 @@
       </div>`;
   }
 
-  function memberRow(m) {
+  function memberRow(m, locked) {
     const s = statusOf(m);
+    // not_started 无独立 badge 样式，复用 active 外观但保留正确文案
+    const badgeClass = s === 'not_started' ? 'active' : s;
     return `<tr>
       <td>${m.id}</td>
       <td>${escapeHtml(m.phone)}</td>
       <td title="${escapeHtml(m.device_id)}">${escapeHtml(maskDevice(m.device_id))}</td>
-      <td><span class="badge ${s}">${statusLabel(s)}</span></td>
+      <td><span class="badge ${badgeClass}">${statusLabel(s)}</span></td>
       <td>${fmtDate(m.start_time)}</td>
       <td>${fmtDate(m.end_time)}</td>
       <td>${fmtDate(m.last_seen)}</td>
-      <td>${actionButtons(m)}</td>
+      <td>${actionButtons(m, locked)}</td>
     </tr>`;
   }
 
   function renderMembers() {
-    const list = getFilteredMembers();
-    const total = list.length;
-    const totalPages = Math.max(1, Math.ceil(total / state.pageSize));
-    if (state.page > totalPages) state.page = totalPages;
-    const start = (state.page - 1) * state.pageSize;
-    const pageList = list.slice(start, start + state.pageSize);
+    const p = state.memberPage;
 
-    $('memberTable').innerHTML = pageList.map(memberRow).join('')
-      || `<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:40px 0;">暂无符合条件的会员</td></tr>`;
+    // 失败：只显示错误与重试入口，不回退旧数据或模拟数据
+    if (p.error) {
+      $('memberTable').innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--danger);padding:40px 0;">加载失败：${escapeHtml(p.error)}<br><button class="page-btn" id="memberReloadBtn" style="margin-top:12px;">重新加载</button></td></tr>`;
+      $('pageInfo').textContent = '加载失败';
+      renderPageButtons(1);
+      const reloadBtn = $('memberReloadBtn');
+      if (reloadBtn) reloadBtn.addEventListener('click', () => loadMembers());
+      return;
+    }
 
-    $('pageInfo').textContent = `共 ${total} 条，第 ${state.page} / ${totalPages} 页`;
-    renderPageButtons(totalPages);
+    // 首次加载：整表显示加载中
+    if (p.loading && !p.loaded) {
+      $('memberTable').innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:40px 0;">加载中…</td></tr>`;
+      $('pageInfo').textContent = '加载中…';
+      renderPageButtons(1);
+      return;
+    }
+
+    const list = p.list;
+    $('memberTable').innerHTML = list.map(m => memberRow(m, true)).join('')
+      || `<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:40px 0;">暂无会员数据</td></tr>`;
+
+    $('pageInfo').textContent = `共 ${p.total} 条，第 ${p.page} / ${p.totalPages} 页` + (p.loading ? '（加载中…）' : '');
+    renderPageButtons(p.totalPages);
     bindMemberActions();
   }
 
@@ -324,7 +550,7 @@
     $('pageButtons').querySelectorAll('.page-btn[data-page]').forEach(btn => {
       btn.addEventListener('click', () => {
         const p = parseInt(btn.dataset.page, 10);
-        if (p >= 1 && p <= totalPages) { state.page = p; renderMembers(); }
+        if (p >= 1 && p <= totalPages) { state.page = p; loadMembers(); }
       });
     });
   }
@@ -782,19 +1008,17 @@
     });
     // 新增会员
     $('btnAdd').addEventListener('click', openAddMember);
-    // 搜索筛选
-    $('searchPhone').addEventListener('input', (e) => { state.filters.phone = e.target.value; state.page = 1; renderMembers(); });
-    $('searchDevice').addEventListener('input', (e) => { state.filters.device = e.target.value; state.page = 1; renderMembers(); });
-    $('filterStatus').addEventListener('change', (e) => { state.filters.status = e.target.value; state.page = 1; renderMembers(); });
-    $('filterExpire').addEventListener('change', (e) => { state.filters.expire = e.target.value; state.page = 1; renderMembers(); });
+    // 搜索筛选：S2 暂不接服务端参数（S3 接入）；此处不改变页码、不发请求、也不对当前页做本地过滤
+    $('searchPhone').addEventListener('input', (e) => { state.filters.phone = e.target.value; });
+    $('searchDevice').addEventListener('input', (e) => { state.filters.device = e.target.value; });
+    $('filterStatus').addEventListener('change', (e) => { state.filters.status = e.target.value; });
+    $('filterExpire').addEventListener('change', (e) => { state.filters.expire = e.target.value; });
     $('btnResetFilter').addEventListener('click', () => {
       state.filters = { phone: '', device: '', status: '', expire: '' };
-      state.page = 1;
       $('searchPhone').value = '';
       $('searchDevice').value = '';
       $('filterStatus').value = '';
       $('filterExpire').value = '';
-      renderMembers();
     });
     // 设置项开关
     document.querySelectorAll('.toggle').forEach(t => {
